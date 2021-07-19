@@ -1,4 +1,6 @@
 #include "Student.h"
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
 int Student::numStudents = 0;
@@ -78,5 +80,14 @@ int Student::getNumStudents()
 
 void Student::displayStudents() 
 {
-
+    cout << fixed << setprecision(1);
+    cout << setw(20) << left << lastName;
+    cout << setw(20) << left << firstName;
+    cout << setw(20) << left << ssn;
+    
+    for(int i = 0; i < 4; i++)
+    {
+        cout << setw(10) << right << scores[i];
+    };
+    cout << setw(10) << right << getAvgScores();
 }
