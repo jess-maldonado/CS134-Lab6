@@ -1,18 +1,23 @@
 #include "Student.cpp"
+#include <string>
+
+using namespace std;
 
 class Classroom
 {
 public:
-	Classroom(std::string cname, std::ifstream inFile);
+	Classroom(string cname);
 	~Classroom();
-	int input(std::ifstream inFile);
-	void sort();
+	void setStudents();
+	Student[] getStudents();
+	void sortGrades();
+	void sortLastName();
 	double avgGrade();
 	void print();
 	int getNStudents();
 
 private:
-	Student* Students{ new Student[24] };
+	Student* StudentArray[24];
 	const string name;
 	int nStudents;
 };

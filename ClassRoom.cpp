@@ -1,13 +1,15 @@
 #include "Classroom.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Student.cpp"
 
 using namespace std;
 
-Classroom::Classroom(string name, ifstream inFile)
+Classroom::Classroom(string cname)
 {
-	this->nStudents = input(inFile);
+	name = cname;
+	nStudents = 0;
 }
 
 Classroom::~Classroom()
@@ -17,7 +19,18 @@ Classroom::~Classroom()
 
 int Classroom::getNStudents()
 {
-	return this->nStudents;
+	return nStudents;
+}
+
+void Classroom::setStudentArray(Student students[], int numStudent) 
+{
+	StudentArray = students[];
+	nStudents = numStudent;
+}
+
+Student* Classroom::getStudentArray()
+{
+	return StudentArray;
 }
 
 int Classroom::input(ifstream inFile)
@@ -32,7 +45,7 @@ int Classroom::input(ifstream inFile)
 	return i + 1;
 }
 
-void Classroom::sort()
+void Classroom::sortGrades()
 {
 	for (int i = 1, j; i < this->nStudents; i++)
 	{
@@ -45,12 +58,12 @@ void Classroom::sort()
 	}
 }
 
-void Classroom::sort()
+void Classroom::sortLastName()
 {
 	for (int i = 1, j; i < this->nStudents; i++)
 	{
 		j = i;
-		while (j > 0 && Students[j - 1].getAvgScores() > Students[j].getAvgScores())
+		while (j > 0 && Students[j - 1].lastName > Students[j].lastName)
 		{
 			std::swap(Students[j], Students[j - 1]);
 			j--;
@@ -72,6 +85,6 @@ void Classroom::print()
 {
 	for (int i; i < nStudents; i++)
 	{
-		cout << Students[i] << endl;
+		StudentArray[i].displayStudent();
 	}
 }
