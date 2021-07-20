@@ -10,11 +10,11 @@ Student::Student()
     numStudents++;
 }
 
-Student::Student(string first, string last, string ssn, double testScores[4])
+Student::Student(string first, string last, string ss, double testScores[4])
 {
     firstName = first;
     lastName = last;
-    ssn = ssn;
+    ssn = ss;
     for(int i = 0; i < 4; i++) 
     {
         scores[i] = testScores[i];
@@ -85,9 +85,9 @@ int Student::getNumStudents()
 void Student::displayStudent() 
 {
     cout << fixed << setprecision(1);
-    cout << setw(20) << left << lastName;
-    cout << setw(20) << left << firstName;
-    cout << setw(20) << left << ssn;
+    cout << setw(15) << left << lastName;
+    cout << setw(15) << left << firstName;
+    cout << setw(15) << left << ssn;
     
     for(int i = 0; i < 4; i++)
     {
