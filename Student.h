@@ -1,3 +1,6 @@
+#ifndef Student_H
+#define Student_H
+
 #include <string>
 
 using namespace std;
@@ -17,7 +20,7 @@ class Student
         double getAvgScores();
         void setScores(double[4]);
         double* getScores();
-        void displayStudents();
+        void displayStudent();
         static int numStudents;
         static int getNumStudents();
 
@@ -27,6 +30,6 @@ class Student
         string ssn = "";
         double scores[4] = {0};
         double calcAverage(double[]);
-    
-    
 };
+
+#endif

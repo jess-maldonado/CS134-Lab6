@@ -4,6 +4,7 @@
 using namespace std;
 
 int Student::numStudents = 0;
+
 Student::Student()
 {
     numStudents++;
@@ -78,7 +79,7 @@ int Student::getNumStudents()
     return numStudents;
 }
 
-void Student::displayStudents() 
+void Student::displayStudent() 
 {
     cout << fixed << setprecision(1);
     cout << setw(20) << left << lastName;

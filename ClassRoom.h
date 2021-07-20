@@ -1,4 +1,7 @@
-#include "Student.cpp"
+#ifndef Classroom_H
+#define Classroom_H
+
+#include "Student.h"
 #include <string>
 
 using namespace std;
@@ -6,18 +9,22 @@ using namespace std;
 class Classroom
 {
 public:
-	Classroom(string cname);
+	Classroom();
+	Classroom(string);
 	~Classroom();
-	void setStudents();
-	Student[] getStudents();
+	void setStudentArray(Student*, int);
+	Student* getStudentArray();
 	void sortGrades();
 	void sortLastName();
 	double avgGrade();
 	void print();
 	int getNStudents();
+	string getName();
 
 private:
-	Student* StudentArray[24];
-	const string name;
+	Student* StudentArray;
+	string name = "Default";
 	int nStudents;
 };
+
+#endif

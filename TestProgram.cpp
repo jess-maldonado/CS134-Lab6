@@ -1,12 +1,13 @@
 #include "Student.h"
-#include "ClassRoom.h"
+#include "Classroom.h"
 #include <iostream>
 
 using namespace std;
 
 int main() 
 {
-    Classroom classroom;
+
+    Classroom classroom("test");
 
     return 0;
 }
