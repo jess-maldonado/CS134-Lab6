@@ -10,12 +10,15 @@ Student::Student()
     numStudents++;
 }
 
-Student::Student(string first, string last, string ssn, double scores[4])
+Student::Student(string first, string last, string ssn, double testScores[4])
 {
     firstName = first;
     lastName = last;
     ssn = ssn;
-    scores = scores;
+    for(int i = 0; i < 4; i++) 
+    {
+        scores[i] = testScores[i];
+    }
     numStudents++;
 }
 
@@ -90,5 +93,5 @@ void Student::displayStudent()
     {
         cout << setw(10) << right << scores[i];
     };
-    cout << setw(10) << right << getAvgScores();
+    cout << setw(10) << right << getAvgScores() << endl;
 }

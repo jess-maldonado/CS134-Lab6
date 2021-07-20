@@ -12,7 +12,7 @@ public:
 	Classroom();
 	Classroom(string);
 	~Classroom();
-	void setStudentArray(Student*, int);
+	void setStudentArray(string);
 	Student* getStudentArray();
 	void sortGrades();
 	void sortLastName();
@@ -22,9 +22,9 @@ public:
 	string getName();
 
 private:
-	Student* StudentArray;
+	Student* StudentArray = new Student[24]();
 	string name = "Default";
-	int nStudents;
+	int nStudents = 0;
 };
 
 #endif

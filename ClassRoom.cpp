@@ -7,21 +7,14 @@
 
 using namespace std;
 
-
-Classroom::Classroom()
-{
-	nStudents = 0;
-}
-
 Classroom::Classroom(string cname)
 {
 	name = cname;
-	nStudents = 0;
 }
 
 Classroom::~Classroom()
 {
-	delete[] StudentArray;
+	delete []StudentArray;
 	nStudents = 0;
 	name = "";
 }
@@ -31,10 +24,21 @@ int Classroom::getNStudents()
 	return nStudents;
 }
 
-void Classroom::setStudentArray(Student* students, int numStudent) 
+void Classroom::setStudentArray(string file) 
 {
-	StudentArray = students;
-	nStudents = numStudent;
+	ifstream inFile;
+    string first, last, ssn;
+    double test[4];
+    int i = 0;
+	inFile.open(file);
+
+	while (inFile >> last >> first >> ssn >> test[0] >> test[1] >> test[2] >> test[3])
+    {
+        StudentArray[i] = Student(first, last, ssn, test);
+        i++;
+    }
+
+	nStudents = i;
 }
 
 Student* Classroom::getStudentArray()
@@ -46,18 +50,6 @@ string Classroom::getName()
 {
 	return name;
 }
-
-// int Classroom::input(ifstream inFile)
-// {
-// 	int i = -1;
-// 	string sFirstName, sLastName, ssn;
-// 	double test[4];
-
-// 	while (inFile >> sLastName >> sFirstName >> ssn >> test[0] >> test[1] >> test[2] >> test[3] || i < 23)
-// 		StudentArray[++i] = new Student(sFirstName, sLastName, ssn, test);
-
-// 	return i + 1;
-// }
 
 void Classroom::sortGrades()
 {
