@@ -1,77 +1,104 @@
-#include "Classroom.h"
 #include <iostream>
 #include <fstream>
-#include "Student.cpp"
+#include <string>
+#include <algorithm>
+#include "Student.h"
+#include "Classroom.h"
 
 using namespace std;
 
-Classroom::Classroom(string name, ifstream inFile)
+Classroom::Classroom(string cname)
 {
-	this->nStudents = input(inFile);
+	name = cname;
 }
 
 Classroom::~Classroom()
 {
-	delete[] Students;
+	delete []StudentArray;
+	nStudents = 0;
+	name = "";
 }
 
 int Classroom::getNStudents()
 {
-	return this->nStudents;
+	return nStudents;
 }
 
-int Classroom::input(ifstream inFile)
+void Classroom::setStudentArray(string file) 
 {
-	int i = -1;
-	string sFirstName, sLastName, ssn;
-	double test[4];
+	ifstream inFile;
+    string first, last, ssn;
+    double test[4];
+    int i = 0;
+	inFile.open(file);
 
-	while (inFile >> sLastName >> sFirstName >> ssn >> test[0] >> test[1] >> test[2] >> test[3] || i < 23)
-		Students[++i] = new Student(sFirstName, sLastName, ssn, test);
+	while (inFile >> last >> first >> ssn >> test[0] >> test[1] >> test[2] >> test[3])
+    {
+        StudentArray[i] = Student(first, last, ssn, test);
+        i++;
+    }
 
-	return i + 1;
+	nStudents = i;
 }
 
-void Classroom::sort()
+Student* Classroom::getStudentArray()
 {
-	for (int i = 1, j; i < this->nStudents; i++)
+	return StudentArray;
+}
+
+string Classroom::getName()
+{
+	return name;
+}
+
+void Classroom::sortGrades()
+{
+	int i, j, largest;
+	for (i = 0; i < nStudents; i++)
 	{
-		j = i;
-		while (j > 0 && Students[j - 1].getAvgScores() > Students[j].getAvgScores())
+		largest = i;
+		for(j = i+1; j < nStudents; j++) 
 		{
-			std::swap(Students[j], Students[j - 1]);
-			j--;
+			if(StudentArray[j].getAvgScores() > StudentArray[largest].getAvgScores())
+			{
+				largest = j;
+			}
 		}
+		swap(StudentArray[i], StudentArray[largest]);
 	}
+	
 }
 
-void Classroom::sort()
+void Classroom::sortLastName()
 {
-	for (int i = 1, j; i < this->nStudents; i++)
+	int i, j, smallest;
+	for (i = 0; i < nStudents; i++)
 	{
-		j = i;
-		while (j > 0 && Students[j - 1].getAvgScores() > Students[j].getAvgScores())
+		smallest = i;
+		for(j = i+1; j < nStudents; j++) 
 		{
-			std::swap(Students[j], Students[j - 1]);
-			j--;
+			if(StudentArray[j].getLastName() < StudentArray[smallest].getLastName() == 1)
+			{
+				smallest = j;
+			}
 		}
+		swap(StudentArray[i], StudentArray[smallest]);
 	}
 }
 
 double Classroom::avgGrade()
 {
-	int avg = 0;
+	double avg = 0;
+	for (int i = 0; i < nStudents; i++)
+		avg += StudentArray[i].getAvgScores();
 
-	for (int i; i < nStudents; i++)
-		avg += Students[i].getAvgScores();
-
-	return avg / this->nStudents;
+	return avg / nStudents;
 }
 
 void Classroom::print()
 {
 	for (int i; i < nStudents; i++)
 	{
-		cout << Students[i] << endl;
+		StudentArray[i].displayStudent();
 	}
 }

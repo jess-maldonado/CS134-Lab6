@@ -4,17 +4,21 @@
 using namespace std;
 
 int Student::numStudents = 0;
+
 Student::Student()
 {
     numStudents++;
 }
 
-Student::Student(string first, string last, string ssn, double scores[4])
+Student::Student(string first, string last, string ss, double testScores[4])
 {
     firstName = first;
     lastName = last;
-    ssn = ssn;
-    scores = scores;
+    ssn = ss;
+    for(int i = 0; i < 4; i++) 
+    {
+        scores[i] = testScores[i];
+    }
     numStudents++;
 }
 
@@ -78,16 +82,16 @@ int Student::getNumStudents()
     return numStudents;
 }
 
-void Student::displayStudents() 
+void Student::displayStudent() 
 {
     cout << fixed << setprecision(1);
-    cout << setw(20) << left << lastName;
-    cout << setw(20) << left << firstName;
-    cout << setw(20) << left << ssn;
+    cout << setw(15) << left << lastName;
+    cout << setw(15) << left << firstName;
+    cout << setw(15) << left << ssn;
     
     for(int i = 0; i < 4; i++)
     {
         cout << setw(10) << right << scores[i];
     };
-    cout << setw(10) << right << getAvgScores();
+    cout << setw(10) << right << getAvgScores() << endl;
 }
